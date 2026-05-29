@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-fp = "heart_failure_clinical_records_dataset.csv"
+fp = "data/heart_failure_clinical_records_dataset.csv"
 
 if not os.path.exists(fp):
     import kagglehub
@@ -19,7 +19,7 @@ if not os.path.exists(fp):
     df_download = kagglehub.dataset_load(
         KaggleDatasetAdapter.PANDAS,
         "guriya79/heart-failure-prediction-dataset",
-        fp,
+        "heart_failure_clinical_records_dataset.csv",
     )
     df_download.to_csv(fp, index=False)
     print("Dataset downloaded and saved.")
@@ -138,3 +138,8 @@ scaler = StandardScaler()
 df_scaled = df_processed.copy()
 df_scaled[features_to_scale] = scaler.fit_transform(df_processed[features_to_scale])
 print(df_scaled.head())
+
+# %%
+# Save data
+
+df.to_csv("data/heart_failure_clinical_records_dataset.prepro.csv")
